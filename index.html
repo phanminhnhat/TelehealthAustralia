@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Guide: Telehealth Market Entry in Australia</title>
+    <title data-i18n-key="pageTitle">Interactive Guide: Telehealth Market Entry in Australia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,13 +81,13 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; /* Added padding to transition */
-            padding: 0; /* Default padding is 0 when collapsed */
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0;
         }
         .accordion-content.is-open {
-            padding-left: 0.75rem; /* Corresponds to px-3 */
-            padding-right: 0.75rem; /* Corresponds to px-3 */
-            padding-bottom: 0.75rem; /* Corresponds to pb-3 */
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-bottom: 0.75rem;
         }
         .btn-primary {
             background-color: #81B29A;
@@ -98,8 +98,8 @@
             background-color: #6a947e;
         }
         .llm-response-box {
-            background-color: #e6f7ff; /* Light blue */
-            border-left: 4px solid #007bff; /* Blue accent */
+            background-color: #e6f7ff;
+            border-left: 4px solid #007bff;
             padding: 1rem;
             margin-top: 1rem;
             border-radius: 0.5rem;
@@ -118,6 +118,24 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .lang-button {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .lang-button:hover {
+            background-color: #c7d2fe;
+            transform: translateY(-1px);
+        }
+        .lang-button.active {
+            background-color: #4f46e5;
+            color: white;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -126,15 +144,21 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <span class="font-bold text-xl text-[#3D405B]">AUS Telehealth Guide</span>
+                    <span class="font-bold text-xl text-[#3D405B]" data-i18n-key="navTitle">AUS Telehealth Guide</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#classification" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent">Classification</a>
-                        <a href="#pathway" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent">ARTG Pathway</a>
-                        <a href="#evidence" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent">Evidence</a>
-                        <a href="#governance" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent">Governance</a>
-                        <a href="#recommendations" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent">Checklist</a>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#classification" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent" data-i18n-key="navClassification">Classification</a>
+                            <a href="#pathway" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent" data-i18n-key="navPathway">ARTG Pathway</a>
+                            <a href="#evidence" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent" data-i18n-key="navEvidence">Evidence</a>
+                            <a href="#governance" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent" data-i18n-key="navGovernance">Governance</a>
+                            <a href="#recommendations" class="nav-link text-gray-600 hover:text-[#81B29A] px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent" data-i18n-key="navChecklist">Checklist</a>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button id="lang-en" class="lang-button active">EN</button>
+                        <button id="lang-vi" class="lang-button">VN</button>
                     </div>
                 </div>
             </div>
@@ -144,53 +168,53 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
         <section class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#3D405B] mb-4">Navigating Australian Telehealth Regulations</h1>
-            <p class="max-w-3xl mx-auto text-lg text-gray-600">An interactive guide to understanding the key requirements for launching your remote monitoring or telehealth platform in Australia, based on TGA guidelines.</p>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#3D405B] mb-4" data-i18n-key="heroTitle">Navigating Australian Telehealth Regulations</h1>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600" data-i18n-key="heroDescription">An interactive guide to understanding the key requirements for launching your remote monitoring or telehealth platform in Australia, based on TGA guidelines.</p>
             <div class="flex items-center justify-center mt-4">
                 <img src="https://lh3.googleusercontent.com/ogw/AF2bZyiTFJtdSCkiRixOsR8syTBsRznLsq_WXpg8vXa-y7I_S3Q=s64-c-mo" alt="Nhat Phan" class="w-8 h-8 mr-2 rounded-full object-cover">
-                <p class="text-gray-700 text-sm font-medium">Designed by Nhat Phan</p>
+                <p class="text-gray-700 text-sm font-medium" data-i18n-key="designedBy">Designed by Nhat Phan</p>
             </div>
         </section>
 
         <section id="classification" class="mb-16 scroll-mt-20">
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200">
-                <h2 class="text-2xl md:text-3xl font-bold text-[#3D405B] mb-2 text-center">Is Your Platform a Medical Device?</h2>
-                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">This is the most critical first step. Your platform's "intended purpose" determines its regulatory path. Answer the questions below to see a likely classification.</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-[#3D405B] mb-2 text-center" data-i18n-key="section1Title">Is Your Platform a Medical Device?</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto" data-i18n-key="section1Description">This is the most critical first step. Your platform's "intended purpose" determines its regulatory path. Answer the questions below to see a likely classification.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div id="saas-questionnaire">
                         <div class="space-y-6">
                             <div>
-                                <h4 class="font-semibold mb-2">1. What does your platform do with data from devices (e.g., Garmin, Apple Watch, FDA-cleared sensors)?</h4>
+                                <h4 class="font-semibold mb-2" data-i18n-key="q1Title">1. What does your platform do with data from devices (e.g., Garmin, Apple Watch, FDA-cleared sensors)?</h4>
                                 <div class="space-y-2">
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="data-function" id="q1-a1" value="display" class="hidden">
-                                        <label for="q1-a1" class="block p-3 cursor-pointer rounded-lg">Simply stores or displays raw data for a doctor to review.</label>
+                                        <label for="q1-a1" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q1a1">Simply stores or displays raw data for a doctor to review.</label>
                                     </div>
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="data-function" id="q1-a2" value="analyze" class="hidden">
-                                        <label for="q1-a2" class="block p-3 cursor-pointer rounded-lg">Analyzes or interprets data to monitor a condition or track progression.</label>
+                                        <label for="q1-a2" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q1a2">Analyzes or interprets data to monitor a condition or track progression.</label>
                                     </div>
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="data-function" id="q1-a3" value="diagnose" class="hidden">
-                                        <label for="q1-a3" class="block p-3 cursor-pointer rounded-lg">Analyzes data to provide a diagnosis, screen for a disease, or suggest a specific treatment.</label>
+                                        <label for="q1-a3" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q1a3">Analyzes data to provide a diagnosis, screen for a disease, or suggest a specific treatment.</label>
                                     </div>
                                 </div>
                             </div>
                              <div>
-                                <h4 class="font-semibold mb-2">2. What is the potential impact if your platform provides incorrect information?</h4>
+                                <h4 class="font-semibold mb-2" data-i18n-key="q2Title">2. What is the potential impact if your platform provides incorrect information?</h4>
                                 <div class="space-y-2">
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="impact" id="q2-a1" value="low" class="hidden">
-                                        <label for="q2-a1" class="block p-3 cursor-pointer rounded-lg">Minimal impact (e.g., wellness tracking), not for critical decisions.</label>
+                                        <label for="q2-a1" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q2a1">Minimal impact (e.g., wellness tracking), not for critical decisions.</label>
                                     </div>
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="impact" id="q2-a2" value="medium" class="hidden">
-                                        <label for="q2-a2" class="block p-3 cursor-pointer rounded-lg">Could lead to incorrect diagnosis or treatment decisions by a clinician.</label>
+                                        <label for="q2-a2" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q2a2">Could lead to incorrect diagnosis or treatment decisions by a clinician.</label>
                                     </div>
                                     <div class="interactive-option rounded-lg border border-gray-200">
                                         <input type="radio" name="impact" id="q2-a3" value="high" class="hidden">
-                                        <label for="q2-a3" class="block p-3 cursor-pointer rounded-lg">Could directly lead to serious harm or requires immediate critical intervention.</label>
+                                        <label for="q2-a3" class="block p-3 cursor-pointer rounded-lg" data-i18n-key="q2a3">Could directly lead to serious harm or requires immediate critical intervention.</label>
                                     </div>
                                 </div>
                             </div>
@@ -198,12 +222,12 @@
                     </div>
                     
                     <div id="classification-result" class="bg-[#F8F7F4] p-6 rounded-lg text-center h-full flex flex-col justify-center items-center transition-opacity duration-500 opacity-20">
-                        <h3 class="text-xl font-bold mb-2">Your Likely Classification</h3>
-                        <p id="result-class" class="text-3xl font-extrabold text-[#E07A5F] mb-4">Awaiting Input</p>
-                        <p id="result-description" class="text-gray-600">Please answer the questions to see your platform's likely regulatory status under TGA rules.</p>
+                        <h3 class="text-xl font-bold mb-2" data-i18n-key="resultClassificationTitle">Your Likely Classification</h3>
+                        <p id="result-class" class="text-3xl font-extrabold text-[#E07A5F] mb-4" data-i18n-key="resultAwaitingInput">Awaiting Input</p>
+                        <p id="result-description" class="text-gray-600" data-i18n-key="resultDescriptionPlaceholder">Please answer the questions to see your platform's likely regulatory status under TGA rules.</p>
                         <div class="w-full mt-4">
-                            <input type="text" id="regulatory-question-input" placeholder="Ask a follow-up question..." class="w-full p-2 border border-gray-300 rounded-md text-sm">
-                            <button id="ask-gemini-btn" class="btn-primary w-full mt-2 p-2 rounded-md text-sm">Ask Gemini for more info ✨</button>
+                            <input type="text" id="regulatory-question-input" data-i18n-placeholder="askFollowUpQuestion" placeholder="Ask a follow-up question..." class="w-full p-2 border border-gray-300 rounded-md text-sm">
+                            <button id="ask-gemini-btn" class="btn-primary w-full mt-2 p-2 rounded-md text-sm" data-i18n-key="askGeminiBtn">Ask Gemini for more info ✨</button>
                             <div id="regulatory-answer-loading" class="hidden mt-2 flex justify-center items-center">
                                 <div class="spinner"></div>
                             </div>
@@ -215,78 +239,78 @@
         </section>
 
         <section id="pathway" class="mb-16 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]">The TGA Regulatory Pathway</h2>
+            <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]" data-i18n-key="section2Title">The TGA Regulatory Pathway</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4">SaMD Risk Classification</h3>
-                    <p class="text-gray-600 mb-4">The TGA uses a risk-based system. Higher risk means more stringent requirements. The chart below shows the classifications from lowest (Class I) to highest (Class III) risk.</p>
+                    <h3 class="text-xl font-bold mb-4" data-i18n-key="samdRiskClassification">SaMD Risk Classification</h3>
+                    <p class="text-gray-600 mb-4" data-i18n-key="samdRiskDescription">The TGA uses a risk-based system. Higher risk means more stringent requirements. The chart below shows the classifications from lowest (Class I) to highest (Class III) risk.</p>
                     <div class="chart-container">
                         <canvas id="riskChart"></canvas>
                     </div>
                 </div>
                 <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4">ARTG Listing Process</h3>
-                    <p class="text-gray-600 mb-6">Inclusion in the Australian Register of Therapeutic Goods (ARTG) is mandatory. Follow these key steps to get your device legally approved for the Australian market.</p>
+                    <h3 class="text-xl font-bold mb-4" data-i18n-key="artgListingProcess">ARTG Listing Process</h3>
+                    <p class="text-gray-600 mb-6" data-i18n-key="artgListingDescription">Inclusion in the Australian Register of Therapeutic Goods (ARTG) is mandatory. Follow these key steps to get your device legally approved for the Australian market.</p>
                     <div id="process-steps" class="space-y-2">
                         <div class="process-step pl-4 py-3" data-step="1">
-                            <h4 class="font-semibold">1. Determine Device Classification</h4>
+                            <h4 class="font-semibold" data-i18n-key="step1">1. Determine Device Classification</h4>
                         </div>
                         <div class="process-step pl-4 py-3" data-step="2">
-                            <h4 class="font-semibold">2. Appoint Australian Sponsor</h4>
+                            <h4 class="font-semibold" data-i18n-key="step2">2. Appoint Australian Sponsor</h4>
                         </div>
                          <div class="process-step pl-4 py-3" data-step="3">
-                            <h4 class="font-semibold">3. Prepare Technical Documentation</h4>
+                            <h4 class="font-semibold" data-i18n-key="step3">3. Prepare Technical Documentation</h4>
                         </div>
                         <div class="process-step pl-4 py-3" data-step="4">
-                            <h4 class="font-semibold">4. Submit Manufacturer's Evidence (QMS)</h4>
+                            <h4 class="font-semibold" data-i18n-key="step4">4. Submit Manufacturer's Evidence (QMS)</h4>
                         </div>
                          <div class="process-step pl-4 py-3" data-step="5">
-                            <h4 class="font-semibold">5. Submit Medical Device Application</h4>
+                            <h4 class="font-semibold" data-i18n-key="step5">5. Submit Medical Device Application</h4>
                         </div>
                         <div class="process-step pl-4 py-3" data-step="6">
-                            <h4 class="font-semibold">6. TGA Approval & ARTG Listing</h4>
+                            <h4 class="font-semibold" data-i18n-key="step6">6. TGA Approval & ARTG Listing</h4>
                         </div>
                     </div>
                      <div id="process-details" class="mt-6 bg-[#F8F7F4] p-4 rounded-lg">
-                        <p class="text-gray-700">Click on a step to see details.</p>
+                        <p class="text-gray-700" data-i18n-key="processDetailsPlaceholder">Click on a step to see details.</p>
                     </div>
                 </div>
             </div>
         </section>
         
         <section id="evidence" class="mb-16 scroll-mt-20">
-             <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]">Quality Management & Clinical Evidence</h2>
+             <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]" data-i18n-key="section3Title">Quality Management & Clinical Evidence</h2>
              <div class="card p-6 md:p-8 rounded-xl">
-                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">All medical devices must comply with the TGA's Essential Principles, demonstrating safety and performance. This is achieved through a robust Quality Management System (QMS) and sufficient clinical evidence.</p>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto" data-i18n-key="section3Description">All medical devices must comply with the TGA's Essential Principles, demonstrating safety and performance. This is achieved through a robust Quality Management System (QMS) and sufficient clinical evidence.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="font-bold text-xl mb-4">Quality Management System (QMS)</h3>
-                        <p class="text-gray-600 mb-4">A compliant QMS is mandatory. It ensures consistent design, development, and delivery of a safe product. The most recognized pathways are:</p>
+                        <h3 class="font-bold text-xl mb-4" data-i18n-key="qmsTitle">Quality Management System (QMS)</h3>
+                        <p class="text-gray-600 mb-4" data-i18n-key="qmsDescription">A compliant QMS is mandatory. It ensures consistent design, development, and delivery of a safe product. The most recognized pathways are:</p>
                         <ul class="space-y-3">
                            <li class="flex items-start">
                                <span class="text-green-500 mr-3 mt-1">&#10003;</span>
-                               <span><strong class="text-[#3D405B]">MDSAP Certification:</strong> A single audit recognized by multiple regulators, including Australia. Highly efficient.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="mdsapCertification">MDSAP Certification:</strong> <span data-i18n-key="mdsapDesc">A single audit recognized by multiple regulators, including Australia. Highly efficient.</span></span>
                            </li>
                            <li class="flex items-start">
                                <span class="text-green-500 mr-3 mt-1">&#10003;</span>
-                               <span><strong class="text-[#3D405B]">ISO 13485:</strong> The international standard for medical device QMS. A fundamental requirement.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="iso13485">ISO 13485:</strong> <span data-i18n-key="iso13485Desc">The international standard for medical device QMS. A fundamental requirement.</span></span>
                            </li>
                         </ul>
-                         <p class="mt-4 text-sm text-gray-500">Note: Leveraging existing certifications (e.g., EU CE Mark, FDA Approval) can significantly speed up your TGA review via the "Abridged Route".</p>
+                         <p class="mt-4 text-sm text-gray-500" data-i18n-key="qmsNote">Note: Leveraging existing certifications (e.g., EU CE Mark, FDA Approval) can significantly speed up your TGA review via the "Abridged Route".</p>
                     </div>
                     <div>
-                        <h3 class="font-bold text-xl mb-4">Three Pillars of SaMD Validation</h3>
-                        <p class="text-gray-600 mb-4">For your software, you must provide evidence for three types of validation. This is especially critical when using data from third-party consumer devices.</p>
+                        <h3 class="font-bold text-xl mb-4" data-i18n-key="threePillarsTitle">Three Pillars of SaMD Validation</h3>
+                        <p class="text-gray-600 mb-4" data-i18n-key="threePillarsDescription">For your software, you must provide evidence for three types of validation. This is especially critical when using data from third-party consumer devices.</p>
                         <div class="space-y-2">
                              <div class="accordion-item border-b">
                                 <div class="accordion-header p-3 flex justify-between items-center">
-                                    <h4 class="font-semibold">1. Valid Clinical Association</h4>
+                                    <h4 class="font-semibold" data-i18n-key="pillar1Title">1. Valid Clinical Association</h4>
                                     <span class="text-xl transform transition-transform duration-300">+</span>
                                 </div>
                                 <div class="accordion-content">
                                     <div class="accordion-inner-content">
-                                        <p class="text-gray-600 mb-2">You must provide scientific evidence linking your software's output to the clinical condition. For example, prove that the ECG data your algorithm uses is accepted by the medical community for diagnosing atrial fibrillation.</p>
-                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Valid Clinical Association">Generate Ideas ✨</button>
+                                        <p class="text-gray-600 mb-2" data-i18n-key="pillar1Desc">You must provide scientific evidence linking your software's output to the clinical condition. For example, prove that the ECG data your algorithm uses is accepted by the medical community for diagnosing atrial fibrillation.</p>
+                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Valid Clinical Association" data-i18n-key="generateIdeasBtn">Generate Ideas ✨</button>
                                         <div class="llm-response-box hidden mt-2"></div>
                                         <div class="hidden mt-2 flex justify-center items-center loading-spinner">
                                             <div class="spinner"></div>
@@ -296,13 +320,13 @@
                             </div>
                             <div class="accordion-item border-b">
                                 <div class="accordion-header p-3 flex justify-between items-center">
-                                    <h4 class="font-semibold">2. Analytical Validation</h4>
+                                    <h4 class="font-semibold" data-i18n-key="pillar2Title">2. Analytical Validation</h4>
                                     <span class="text-xl transform transition-transform duration-300">+</span>
                                 </div>
                                 <div class="accordion-content">
                                     <div class="accordion-inner-content">
-                                        <p class="text-gray-600 mb-2">You must prove your software is technically sound. Show that it can accurately and reliably process inputs to produce precise and repeatable outputs. This includes validating its performance with data from *each* third-party device (e.g., Apple Watch, Garmin).</p>
-                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Analytical Validation">Generate Ideas ✨</button>
+                                        <p class="text-gray-600 mb-2" data-i18n-key="pillar2Desc">You must prove your software is technically sound. Show that it can accurately and reliably process inputs to produce precise and repeatable outputs. This includes validating its performance with data from *each* third-party device (e.g., Apple Watch, Garmin).</p>
+                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Analytical Validation" data-i18n-key="generateIdeasBtn">Generate Ideas ✨</button>
                                         <div class="llm-response-box hidden mt-2"></div>
                                         <div class="hidden mt-2 flex justify-center items-center loading-spinner">
                                             <div class="spinner"></div>
@@ -312,13 +336,13 @@
                             </div>
                             <div class="accordion-item">
                                 <div class="accordion-header p-3 flex justify-between items-center">
-                                    <h4 class="font-semibold">3. Clinical Validation</h4>
+                                    <h4 class="font-semibold" data-i18n-key="pillar3Title">3. Clinical Validation</h4>
                                     <span class="text-xl transform transition-transform duration-300">+</span>
                                 </div>
                                 <div class="accordion-content">
                                     <div class="accordion-inner-content">
-                                        <p class="text-gray-600 mb-2">You must demonstrate that your software provides a clinically meaningful benefit in a real-world setting for its intended purpose. This often requires data from clinical studies.</p>
-                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Clinical Validation">Generate Ideas ✨</button>
+                                        <p class="text-gray-600 mb-2" data-i18n-key="pillar3Desc">You must demonstrate that your software provides a clinically meaningful benefit in a real-world setting for its intended purpose. This often requires data from clinical studies.</p>
+                                        <button class="btn-primary generate-ideas-btn mt-2 p-2 rounded-md text-sm" data-pillar="Clinical Validation" data-i18n-key="generateIdeasBtn">Generate Ideas ✨</button>
                                         <div class="llm-response-box hidden mt-2"></div>
                                         <div class="hidden mt-2 flex justify-center items-center loading-spinner">
                                             <div class="spinner"></div>
@@ -333,33 +357,33 @@
         </section>
 
         <section id="governance" class="mb-16 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]">Data Privacy & Cybersecurity Governance</h2>
+            <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]" data-i18n-key="section4Title">Data Privacy & Cybersecurity Governance</h2>
              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4">Australian Privacy Principles (APPs)</h3>
-                    <p class="text-gray-600 mb-4">Handling sensitive health data requires strict compliance with the Privacy Act. Focus on these key principles:</p>
+                    <h3 class="text-xl font-bold mb-4" data-i18n-key="appTitle">Australian Privacy Principles (APPs)</h3>
+                    <p class="text-gray-600 mb-4" data-i18n-key="appDescription">Handling sensitive health data requires strict compliance with the Privacy Act. Focus on these key principles:</p>
                      <ul class="space-y-3">
                            <li class="flex items-start">
                                <span class="font-bold text-[#81B29A] mr-3 mt-1">&#9679;</span>
-                               <span><strong class="text-[#3D405B]">Explicit Consent (APP 3):</strong> You MUST get explicit, informed, and granular consent from users to collect and use their health data, especially from third-party devices.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="consentTitle">Explicit Consent (APP 3):</strong> <span data-i18n-key="consentDesc">You MUST get explicit, informed, and granular consent from users to collect and use their health data, especially from third-party devices.</span></span>
                            </li>
                            <li class="flex items-start">
                                <span class="font-bold text-[#81B29A] mr-3 mt-1">&#9679;</span>
-                               <span><strong class="text-[#3D405B]">Data Security (APP 11):</strong> You must take reasonable steps to protect personal information from misuse, interference, loss, and unauthorized access.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="dataSecurityTitle">Data Security (APP 11):</strong> <span data-i18n-key="dataSecurityDesc">You must take reasonable steps to protect personal information from misuse, interference, loss, and unauthorized access.</span></span>
                            </li>
                             <li class="flex items-start">
                                <span class="font-bold text-[#81B29A] mr-3 mt-1">&#9679;</span>
-                               <span><strong class="text-[#3D405B]">Purpose Limitation (APP 6):</strong> Only use data for the primary purpose you collected it for, unless you get fresh consent.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="purposeLimitationTitle">Purpose Limitation (APP 6):</strong> <span data-i18n-key="purposeLimitationDesc">Only use data for the primary purpose you collected it for, unless you get fresh consent.</span></span>
                            </li>
                            <li class="flex items-start">
                                <span class="font-bold text-[#81B29A] mr-3 mt-1">&#9679;</span>
-                               <span><strong class="text-[#3D405B]">Data Breach Notification:</strong> You have a mandatory obligation to notify users and the regulator of eligible data breaches.</span>
+                               <span><strong class="text-[#3D405B]" data-i18n-key="dataBreachTitle">Data Breach Notification:</strong> <span data-i18n-key="dataBreachDesc">You have a mandatory obligation to notify users and the regulator of eligible data breaches.</span></span>
                            </li>
                         </ul>
                 </div>
                 <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4">Cybersecurity by Design</h3>
-                    <p class="text-gray-600 mb-4">Cybersecurity is a core safety requirement. It must be integrated throughout the device lifecycle. The chart shows key standards and their areas of focus.</p>
+                    <h3 class="text-xl font-bold mb-4" data-i18n-key="cybersecurityDesignTitle">Cybersecurity by Design</h3>
+                    <p class="text-gray-600 mb-4" data-i18n-key="cybersecurityDesignDesc">Cybersecurity is a core safety requirement. It must be integrated throughout the device lifecycle. The chart shows key standards and their areas of focus.</p>
                      <div class="chart-container h-80 md:h-96">
                         <canvas id="cybersecurityChart"></canvas>
                     </div>
@@ -368,15 +392,15 @@
         </section>
         
         <section id="recommendations" class="scroll-mt-20">
-             <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]">Final Recommendations Checklist</h2>
+             <h2 class="text-3xl font-bold text-center mb-10 text-[#3D405B]" data-i18n-key="section5Title">Final Recommendations Checklist</h2>
              <div class="card p-6 md:p-8 rounded-xl">
-                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Successfully entering the Australian market requires a proactive and comprehensive approach. Use this checklist to guide your strategic planning.</p>
+                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto" data-i18n-key="section5Description">Successfully entering the Australian market requires a proactive and comprehensive approach. Use this checklist to guide your strategic planning.</p>
                  <div class="space-y-4 max-w-4xl mx-auto">
                     <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec1" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec1" class="text-gray-700"><strong>Define Intended Purpose Precisely:</strong> Formally document all platform claims to determine your exact TGA classification.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec1" class="text-gray-700" data-i18n-key="rec1Title"><strong>Define Intended Purpose Precisely:</strong> <span data-i18n-key="rec1Desc">Formally document all platform claims to determine your exact TGA classification.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -386,8 +410,8 @@
                     <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec2" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec2" class="text-gray-700"><strong>Validate All Data Inputs:</strong> Create and document rigorous validation protocols for data from every single third-party device you integrate with.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec2" class="text-gray-700" data-i18n-key="rec2Title"><strong>Validate All Data Inputs:</strong> <span data-i18n-key="rec2Desc">Create and document rigorous validation protocols for data from every single third-party device you integrate with.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -397,8 +421,8 @@
                      <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec3" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec3" class="text-gray-700"><strong>Establish a Compliant QMS:</strong> Implement an ISO 13485 compliant system or obtain MDSAP certification early in your process.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec3" class="text-gray-700" data-i18n-key="rec3Title"><strong>Establish a Compliant QMS:</strong> <span data-i18n-key="rec3Desc">Implement an ISO 13485 compliant system or obtain MDSAP certification early in your process.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -408,8 +432,8 @@
                      <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec4" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec4" class="text-gray-700"><strong>Select a Competent Australian Sponsor:</strong> Vet and appoint a local sponsor with proven digital health regulatory experience.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec4" class="text-gray-700" data-i18n-key="rec4Title"><strong>Select a Competent Australian Sponsor:</strong> <span data-i18n-key="rec4Desc">Vet and appoint a local sponsor with proven digital health regulatory experience.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -419,8 +443,8 @@
                      <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec5" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec5" class="text-gray-700"><strong>Prioritize Cybersecurity by Design:</strong> Integrate security into your software development lifecycle from day one, not as an afterthought.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec5" class="text-gray-700" data-i18n-key="rec5Title"><strong>Prioritize Cybersecurity by Design:</strong> <span data-i18n-key="rec5Desc">Integrate security into your software development lifecycle from day one, not as an afterthought.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -430,8 +454,8 @@
                     <div class="bg-gray-50 p-4 rounded-lg flex items-start flex-col">
                         <div class="flex items-start w-full">
                             <input type="checkbox" id="rec6" class="h-5 w-5 rounded border-gray-300 text-[#81B29A] focus:ring-[#81B29A] mt-1 mr-4 flex-shrink-0">
-                            <label for="rec6" class="text-gray-700"><strong>Embrace Interoperability Standards:</strong> Design your platform to be compatible with HL7 FHIR and SNOMED CT-AU for future integration with the Australian digital health ecosystem.</label>
-                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs">Elaborate ✨</button>
+                            <label for="rec6" class="text-gray-700" data-i18n-key="rec6Title"><strong>Embrace Interoperability Standards:</strong> <span data-i18n-key="rec6Desc">Design your platform to be compatible with HL7 FHIR and SNOMED CT-AU for future integration with the Australian digital health ecosystem.</span></label>
+                            <button class="btn-primary expand-recommendation-btn ml-auto p-1.5 rounded-md text-xs" data-i18n-key="elaborateBtn">Elaborate ✨</button>
                         </div>
                         <div class="llm-response-box hidden mt-2 w-full"></div>
                         <div class="hidden mt-2 flex justify-center items-center loading-spinner w-full">
@@ -445,8 +469,8 @@
 
     <footer class="bg-white border-t mt-16">
         <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2024 Interactive Regulatory Guide. Content derived from research on Australian telehealth regulations.</p>
-            <p>This tool is for informational purposes only and does not constitute legal or regulatory advice.</p>
+            <p data-i18n-key="footerCopyRight">&copy; 2024 Interactive Regulatory Guide. Content derived from research on Australian telehealth regulations.</p>
+            <p data-i18n-key="footerDisclaimer">This tool is for informational purposes only and does not constitute legal or regulatory advice.</p>
         </div>
     </footer>
 
@@ -455,22 +479,297 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Placeholder for Gemini API Key - DO NOT store actual API key here.
             // In a real application, fetch this securely from a backend.
-            const apiKey = "AIzaSyD8v87fqDufeimwPUi2vYqN0pcU7gGBQgA"; 
+            const apiKey = "YOUR_GEMINI_API_KEY_HERE"; 
+
+            // --- LANGUAGE TRANSLATIONS ---
+            const translations = {
+                en: {
+                    pageTitle: "Interactive Guide: Telehealth Market Entry in Australia",
+                    navTitle: "AUS Telehealth Guide",
+                    navClassification: "Classification",
+                    navPathway: "ARTG Pathway",
+                    navEvidence: "Evidence",
+                    navGovernance: "Governance",
+                    navChecklist: "Checklist",
+                    heroTitle: "Navigating Australian Telehealth Regulations",
+                    heroDescription: "An interactive guide to understanding the key requirements for launching your remote monitoring or telehealth platform in Australia, based on TGA guidelines.",
+                    designedBy: "Designed by Nhat Phan",
+
+                    section1Title: "Is Your Platform a Medical Device?",
+                    section1Description: "This is the most critical first step. Your platform's \"intended purpose\" determines its regulatory path. Answer the questions below to see a likely classification.",
+                    q1Title: "1. What does your platform do with data from devices (e.g., Garmin, Apple Watch, FDA-cleared sensors)?",
+                    q1a1: "Simply stores or displays raw data for a doctor to review.",
+                    q1a2: "Analyzes or interprets data to monitor a condition or track progression.",
+                    q1a3: "Analyzes data to provide a diagnosis, screen for a disease, or suggest a specific treatment.",
+                    q2Title: "2. What is the potential impact if your platform provides incorrect information?",
+                    q2a1: "Minimal impact (e.g., wellness tracking), not for critical decisions.",
+                    q2a2: "Could lead to incorrect diagnosis or treatment decisions by a clinician.",
+                    q2a3: "Could directly lead to serious harm or requires immediate critical intervention.",
+                    resultClassificationTitle: "Your Likely Classification",
+                    resultAwaitingInput: "Awaiting Input",
+                    resultDescriptionPlaceholder: "Please answer the questions to see your platform's likely regulatory status under TGA rules.",
+                    askFollowUpQuestion: "Ask a follow-up question...",
+                    askGeminiBtn: "Ask Gemini for more info ✨",
+
+                    section2Title: "The TGA Regulatory Pathway",
+                    samdRiskClassification: "SaMD Risk Classification",
+                    samdRiskDescription: "The TGA uses a risk-based system. Higher risk means more stringent requirements. The chart below shows the classifications from lowest (Class I) to highest (Class III) risk.",
+                    artgListingProcess: "ARTG Listing Process",
+                    artgListingDescription: "Inclusion in the Australian Register of Therapeutic Goods (ARTG) is mandatory. Follow these key steps to get your device legally approved for the Australian market.",
+                    step1: "1. Determine Device Classification",
+                    step2: "2. Appoint Australian Sponsor",
+                    step3: "3. Prepare Technical Documentation",
+                    step4: "4. Submit Manufacturer's Evidence (QMS)",
+                    step5: "5. Submit Medical Device Application",
+                    step6: "6. TGA Approval & ARTG Listing",
+                    processDetailsPlaceholder: "Click on a step to see details.",
+
+                    section3Title: "Quality Management & Clinical Evidence",
+                    section3Description: "All medical devices must comply with the TGA's Essential Principles, demonstrating safety and performance. This is achieved through a robust Quality Management System (QMS) and sufficient clinical evidence.",
+                    qmsTitle: "Quality Management System (QMS)",
+                    qmsDescription: "A compliant QMS is mandatory. It ensures consistent design, development, and delivery of a safe product. The most recognized pathways are:",
+                    mdsapCertification: "MDSAP Certification:",
+                    mdsapDesc: "A single audit recognized by multiple regulators, including Australia. Highly efficient.",
+                    iso13485: "ISO 13485:",
+                    iso13485Desc: "The international standard for medical device QMS. A fundamental requirement.",
+                    qmsNote: "Note: Leveraging existing certifications (e.g., EU CE Mark, FDA Approval) can significantly speed up your TGA review via the \"Abridged Route\".",
+                    threePillarsTitle: "Three Pillars of SaMD Validation",
+                    threePillarsDescription: "For your software, you must provide evidence for three types of validation. This is especially critical when using data from third-party consumer devices.",
+                    pillar1Title: "1. Valid Clinical Association",
+                    pillar1Desc: "You must provide scientific evidence linking your software's output to the clinical condition. For example, prove that the ECG data your algorithm uses is accepted by the medical community for diagnosing atrial fibrillation.",
+                    pillar2Title: "2. Analytical Validation",
+                    pillar2Desc: "You must prove your software is technically sound. Show that it can accurately and reliably process inputs to produce precise and repeatable outputs. This includes validating its performance with data from *each* third-party device (e.g., Apple Watch, Garmin).",
+                    pillar3Title: "3. Clinical Validation",
+                    pillar3Desc: "You must demonstrate that your software provides a clinically meaningful benefit in a real-world setting for its intended purpose. This often requires data from clinical studies.",
+                    generateIdeasBtn: "Generate Ideas ✨",
+
+                    section4Title: "Data Privacy & Cybersecurity Governance",
+                    appTitle: "Australian Privacy Principles (APPs)",
+                    appDescription: "Handling sensitive health data requires strict compliance with the Privacy Act. Focus on these key principles:",
+                    consentTitle: "Explicit Consent (APP 3):",
+                    consentDesc: "You MUST get explicit, informed, and granular consent from users to collect and use their health data, especially from third-party devices.",
+                    dataSecurityTitle: "Data Security (APP 11):",
+                    dataSecurityDesc: "You must take reasonable steps to protect personal information from misuse, interference, loss, and unauthorized access.",
+                    purposeLimitationTitle: "Purpose Limitation (APP 6):",
+                    purposeLimitationDesc: "Only use data for the primary purpose you collected it for, unless you get fresh consent.",
+                    dataBreachTitle: "Data Breach Notification:",
+                    dataBreachDesc: "You have a mandatory obligation to notify users and the regulator of eligible data breaches.",
+                    cybersecurityDesignTitle: "Cybersecurity by Design",
+                    cybersecurityDesignDesc: "Cybersecurity is a core safety requirement. It must be integrated throughout the device lifecycle. The chart shows key standards and their areas of focus.",
+
+                    section5Title: "Final Recommendations Checklist",
+                    section5Description: "Successfully entering the Australian market requires a proactive and comprehensive approach. Use this checklist to guide your strategic planning.",
+                    rec1Title: "Define Intended Purpose Precisely:",
+                    rec1Desc: "Formally document all platform claims to determine your exact TGA classification.",
+                    rec2Title: "Validate All Data Inputs:",
+                    rec2Desc: "Create and document rigorous validation protocols for data from every single third-party device you integrate with.",
+                    rec3Title: "Establish a Compliant QMS:",
+                    rec3Desc: "Implement an ISO 13485 compliant system or obtain MDSAP certification early in your process.",
+                    rec4Title: "Select a Competent Australian Sponsor:",
+                    rec4Desc: "Vet and appoint a local sponsor with proven digital health regulatory experience.",
+                    rec5Title: "Prioritize Cybersecurity by Design:",
+                    rec5Desc: "Integrate security into your software development lifecycle from day one, not as an afterthought.",
+                    rec6Title: "Embrace Interoperability Standards:",
+                    rec6Desc: "Design your platform to be compatible with HL7 FHIR and SNOMED CT-AU for future integration with the Australian digital health ecosystem.",
+                    elaborateBtn: "Elaborate ✨",
+
+                    footerCopyRight: "&copy; 2024 Interactive Regulatory Guide. Content derived from research on Australian telehealth regulations.",
+                    footerDisclaimer: "This tool is for informational purposes only and does not constitute legal or regulatory advice."
+                },
+                vi: {
+                    pageTitle: "Hướng dẫn tương tác: Gia nhập thị trường telehealth Úc",
+                    navTitle: "Hướng dẫn Telehealth Úc",
+                    navClassification: "Phân loại",
+                    navPathway: "Quy trình ARTG",
+                    navEvidence: "Bằng chứng",
+                    navGovernance: "Quản trị",
+                    navChecklist: "Danh mục kiểm tra",
+                    heroTitle: "Điều hướng Quy định Telehealth Úc",
+                    heroDescription: "Hướng dẫn tương tác để hiểu các yêu cầu chính khi ra mắt nền tảng theo dõi từ xa hoặc telehealth của bạn tại Úc, dựa trên các hướng dẫn của TGA.",
+                    designedBy: "Thiết kế bởi Nhat Phan",
+
+                    section1Title: "Nền tảng của bạn có phải là Thiết bị Y tế không?",
+                    section1Description: "Đây là bước đầu tiên quan trọng nhất. \"Mục đích sử dụng dự kiến\" của nền tảng sẽ xác định con đường pháp lý. Trả lời các câu hỏi dưới đây để xem phân loại có thể có.",
+                    q1Title: "1. Nền tảng của bạn làm gì với dữ liệu từ các thiết bị (ví dụ: Garmin, Samsung Watch, Apple Watch, cảm biến được FDA chấp thuận)?",
+                    q1a1: "Chỉ lưu trữ hoặc hiển thị dữ liệu thô để bác sĩ xem xét.",
+                    q1a2: "Phân tích hoặc diễn giải dữ liệu để theo dõi tình trạng hoặc tiến triển.",
+                    q1a3: "Phân tích dữ liệu để cung cấp chẩn đoán, sàng lọc bệnh hoặc đề xuất một phương pháp điều trị cụ thể.",
+                    q2Title: "2. Tác động tiềm tàng nếu nền tảng của bạn cung cấp thông tin không chính xác là gì?",
+                    q2a1: "Tác động tối thiểu (ví dụ: theo dõi sức khỏe), không dùng cho các quyết định quan trọng.",
+                    q2a2: "Có thể dẫn đến chẩn đoán hoặc quyết định điều trị sai lầm của bác sĩ lâm sàng.",
+                    q2a3: "Có thể trực tiếp dẫn đến tác hại nghiêm trọng hoặc yêu cầu can thiệp khẩn cấp tức thì.",
+                    resultClassificationTitle: "Phân loại có thể có của bạn",
+                    resultAwaitingInput: "Đang chờ nhập liệu",
+                    resultDescriptionPlaceholder: "Vui lòng trả lời các câu hỏi để xem trạng thái pháp lý có thể có của nền tảng của bạn theo quy định của TGA.",
+                    askFollowUpQuestion: "Đặt câu hỏi tiếp theo...",
+                    askGeminiBtn: "Hỏi Gemini để biết thêm thông tin ✨",
+
+                    section2Title: "Quy trình Pháp lý TGA",
+                    samdRiskClassification: "Phân loại rủi ro SaMD",
+                    samdRiskDescription: "TGA sử dụng hệ thống dựa trên rủi ro. Rủi ro càng cao, yêu cầu càng nghiêm ngặt. Biểu đồ dưới đây cho thấy các phân loại từ rủi ro thấp nhất (Loại I) đến cao nhất (Loại III).",
+                    artgListingProcess: "Quy trình niêm yết ARTG",
+                    artgListingDescription: "Việc đưa vào Sổ đăng ký hàng hóa trị liệu của Úc (ARTG) là bắt buộc. Thực hiện các bước chính này để thiết bị của bạn được pháp luật Úc phê duyệt để đưa ra thị trường.",
+                    step1: "1. Xác định phân loại thiết bị",
+                    step2: "2. Chỉ định nhà tài trợ Úc",
+                    step3: "3. Chuẩn bị tài liệu kỹ thuật",
+                    step4: "4. Gửi bằng chứng của nhà sản xuất (QMS)",
+                    step5: "5. Gửi đơn đăng ký thiết bị y tế",
+                    step6: "6. Phê duyệt TGA & Niêm yết ARTG",
+                    processDetailsPlaceholder: "Nhấp vào một bước để xem chi tiết.",
+
+                    section3Title: "Quản lý Chất lượng & Bằng chứng Lâm sàng",
+                    section3Description: "Tất cả các thiết bị y tế phải tuân thủ Các nguyên tắc thiết yếu của TGA, chứng minh sự an toàn và hiệu suất. Điều này đạt được thông qua Hệ thống quản lý chất lượng (QMS) mạnh mẽ và bằng chứng lâm sàng đầy đủ.",
+                    qmsTitle: "Hệ thống quản lý chất lượng (QMS)",
+                    qmsDescription: "QMS tuân thủ là bắt buộc. Nó đảm bảo thiết kế, phát triển và cung cấp sản phẩm an toàn một cách nhất quán. Các con đường được công nhận nhất là:",
+                    mdsapCertification: "Chứng nhận MDSAP:",
+                    mdsapDesc: "Một cuộc kiểm toán duy nhất được nhiều cơ quan quản lý công nhận, bao gồm Úc. Hiệu quả cao.",
+                    iso13485: "ISO 13485:",
+                    iso13485Desc: "Tiêu chuẩn quốc tế cho QMS thiết bị y tế. Một yêu cầu cơ bản.",
+                    qmsNote: "Lưu ý: Tận dụng các chứng nhận hiện có (ví dụ: Dấu CE của EU, Phê duyệt FDA) có thể đẩy nhanh đáng kể quá trình xem xét TGA của bạn thông qua \"Lộ trình rút gọn\".",
+                    threePillarsTitle: "Ba trụ cột xác thực SaMD",
+                    threePillarsDescription: "Đối với phần mềm của bạn, bạn phải cung cấp bằng chứng cho ba loại xác thực. Điều này đặc biệt quan trọng khi sử dụng dữ liệu từ các thiết bị tiêu dùng của bên thứ ba.",
+                    pillar1Title: "1. Liên kết lâm sàng hợp lệ",
+                    pillar1Desc: "Bạn phải cung cấp bằng chứng khoa học liên kết đầu ra phần mềm của bạn với tình trạng lâm sàng. Ví dụ, chứng minh rằng dữ liệu ECG mà thuật toán của bạn sử dụng được cộng đồng y tế chấp nhận để chẩn đoán rung nhĩ.",
+                    pillar2Title: "2. Xác thực phân tích",
+                    pillar2Desc: "Bạn phải chứng minh phần mềm của mình có kỹ thuật tốt. Cho thấy nó có thể xử lý đầu vào một cách chính xác và đáng tin cậy để tạo ra đầu ra chính xác và lặp lại. Điều này bao gồm việc xác thực hiệu suất của nó với dữ liệu từ *từng* thiết bị của bên thứ ba (ví dụ: Apple Watch, Garmin).",
+                    pillar3Title: "3. Xác thực lâm sàng",
+                    pillar3Desc: "Bạn phải chứng minh rằng phần mềm của bạn mang lại lợi ích lâm sàng có ý nghĩa trong môi trường thực tế cho mục đích sử dụng dự kiến của nó. Điều này thường yêu cầu dữ liệu từ các nghiên cứu lâm sàng.",
+                    generateIdeasBtn: "Tạo ý tưởng ✨",
+
+                    section4Title: "Quyền riêng tư dữ liệu & Quản trị an ninh mạng",
+                    appTitle: "Nguyên tắc bảo mật của Úc (APP)",
+                    appDescription: "Xử lý dữ liệu sức khỏe nhạy cảm đòi hỏi phải tuân thủ nghiêm ngặt Đạo luật quyền riêng tư. Tập trung vào các nguyên tắc chính này:",
+                    consentTitle: "Đồng ý rõ ràng (APP 3):",
+                    consentDesc: "Bạn PHẢI nhận được sự đồng ý rõ ràng, có thông tin và chi tiết từ người dùng để thu thập và sử dụng dữ liệu sức khỏe của họ, đặc biệt là từ các thiết bị của bên thứ ba.",
+                    dataSecurityTitle: "Bảo mật dữ liệu (APP 11):",
+                    dataSecurityDesc: "Bạn phải thực hiện các bước hợp lý để bảo vệ thông tin cá nhân khỏi việc lạm dụng, can thiệp, mất mát và truy cập trái phép.",
+                    purposeLimitationTitle: "Giới hạn mục đích (APP 6):",
+                    purposeLimitationDesc: "Chỉ sử dụng dữ liệu cho mục đích chính bạn đã thu thập, trừ khi bạn có được sự đồng ý mới.",
+                    dataBreachTitle: "Thông báo vi phạm dữ liệu:",
+                    dataBreachDesc: "Bạn có nghĩa vụ bắt buộc phải thông báo cho người dùng và cơ quan quản lý về các vi phạm dữ liệu đủ điều kiện.",
+                    cybersecurityDesignTitle: "An ninh mạng theo thiết kế",
+                    cybersecurityDesignDesc: "An ninh mạng là một yêu cầu an toàn cốt lõi. Nó phải được tích hợp trong toàn bộ vòng đời của thiết bị. Biểu đồ cho thấy các tiêu chuẩn chính và các lĩnh vực trọng tâm của chúng.",
+
+                    section5Title: "Danh mục kiểm tra khuyến nghị cuối cùng",
+                    section5Description: "Việc gia nhập thị trường Úc thành công đòi hỏi một cách tiếp cận chủ động và toàn diện. Sử dụng danh mục kiểm tra này để hướng dẫn lập kế hoạch chiến lược của bạn.",
+                    rec1Title: "Xác định chính xác mục đích sử dụng dự kiến:",
+                    rec1Desc: "Chính thức ghi lại tất cả các tuyên bố về nền tảng để xác định phân loại TGA chính xác của bạn.",
+                    rec2Title: "Xác thực tất cả các đầu vào dữ liệu:",
+                    rec2Desc: "Tạo và ghi lại các giao thức xác thực nghiêm ngặt cho dữ liệu từ mọi thiết bị của bên thứ ba mà bạn tích hợp.",
+                    rec3Title: "Thiết lập QMS tuân thủ:",
+                    rec3Desc: "Triển khai hệ thống tuân thủ ISO 13485 hoặc có được chứng nhận MDSAP sớm trong quá trình của bạn.",
+                    rec4Title: "Chọn nhà tài trợ Úc có năng lực:",
+                    rec4Desc: "Kiểm tra và chỉ định một nhà tài trợ địa phương có kinh nghiệm quy định về sức khỏe kỹ thuật số đã được chứng minh.",
+                    rec5Title: "Ưu tiên an ninh mạng theo thiết kế:",
+                    rec5Desc: "Tích hợp bảo mật vào vòng đời phát triển phần mềm của bạn ngay từ ngày đầu tiên, không phải là một suy nghĩ sau này.",
+                    rec6Title: "Áp dụng các tiêu chuẩn tương tác:",
+                    rec6Desc: "Thiết kế nền tảng của bạn để tương thích với HL7 FHIR và SNOMED CT-AU để tích hợp trong tương lai với hệ sinh thái y tế kỹ thuật số của Úc.",
+                    elaborateBtn: "Giải thích thêm ✨",
+
+                    footerCopyRight: "&copy; 2024 Hướng dẫn Quy định tương tác. Nội dung được lấy từ nghiên cứu về các quy định telehealth của Úc.",
+                    footerDisclaimer: "Công cụ này chỉ dành cho mục đích thông tin và không cấu thành lời khuyên pháp lý hoặc quy định."
+                }
+            };
+
+            let currentLanguage = 'en'; // Default language
+
+            // Function to update content based on selected language
+            function updateContent(lang) {
+                document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        // Handle placeholder attributes for input fields
+                        if (element.hasAttribute('data-i18n-placeholder')) {
+                            const placeholderKey = element.getAttribute('data-i18n-placeholder');
+                            if (translations[lang][placeholderKey]) {
+                                element.placeholder = translations[lang][placeholderKey];
+                            }
+                        }
+                        // Update text content for most elements
+                        if (element.tagName === 'TITLE') {
+                            document.title = translations[lang][key];
+                        } else {
+                            // Safely update innerHTML for strong tags inside labels
+                            if (element.querySelector('strong') && element.querySelector('span')) {
+                                const strongTag = element.querySelector('strong');
+                                const spanTag = element.querySelector('span');
+                                // Preserve original strong tag text from the translation key if it's explicitly a strong text
+                                if (key.endsWith('Title')) { // Heuristic: if key ends with Title, assume it's the strong part
+                                    strongTag.textContent = translations[lang][key];
+                                    spanTag.textContent = translations[lang][key.replace('Title', 'Desc')];
+                                } else { // For general spans that are part of a larger label
+                                    strongTag.textContent = translations[lang][key.substring(0, key.indexOf('Desc'))]; // This might need refinement for complex nested structures
+                                    spanTag.textContent = translations[lang][key];
+                                }
+                            } else {
+                                element.textContent = translations[lang][key];
+                            }
+                        }
+                    }
+                });
+
+                // Update special dynamic text that isn't handled by data-i18n-key
+                // (e.g., placeholder text for classification results that are dynamically set)
+                if (document.getElementById('resultAwaitingInput') && translations[lang].resultAwaitingInput) {
+                    document.getElementById('resultAwaitingInput').textContent = translations[lang].resultAwaitingInput;
+                }
+                if (document.getElementById('resultDescriptionPlaceholder') && translations[lang].resultDescriptionPlaceholder) {
+                    document.getElementById('resultDescriptionPlaceholder').textContent = translations[lang].resultDescriptionPlaceholder;
+                }
+                if (document.getElementById('processDetailsPlaceholder') && translations[lang].processDetailsPlaceholder) {
+                    document.getElementById('processDetailsPlaceholder').textContent = translations[lang].processDetailsPlaceholder;
+                }
+
+                // Update language buttons active state
+                document.querySelectorAll('.lang-button').forEach(button => {
+                    button.classList.remove('active');
+                    if (button.id === `lang-${lang}`) {
+                        button.classList.add('active');
+                    }
+                });
+                currentLanguage = lang; // Update current language state
+            }
+
+            // Language switcher event listeners
+            document.getElementById('lang-en').addEventListener('click', () => updateContent('en'));
+            document.getElementById('lang-vi').addEventListener('click', () => updateContent('vi'));
+
+            // Initial content update
+            updateContent(currentLanguage);
+
 
             const classificationData = {
-                display: { low: "Not a Medical Device (likely excluded as 'enabling technology')", medium: "Class I (Low Risk)", high: "Class I (Low Risk)"},
-                analyze: { low: "Class I / IIa (Low-Medium Risk)", medium: "Class IIa / IIb (Medium-High Risk)", high: "Class IIb (Medium-High Risk)"},
-                diagnose: { low: "Class IIa / IIb (Medium-High Risk)", medium: "Class IIb / III (High Risk)", high: "Class III (High Risk)"}
+                en: {
+                    display: { low: "Not a Medical Device (likely excluded as 'enabling technology')", medium: "Class I (Low Risk)", high: "Class I (Low Risk)"},
+                    analyze: { low: "Class I / IIa (Low-Medium Risk)", medium: "Class IIa / IIb (Medium-High Risk)", high: "Class IIb (Medium-High Risk)"},
+                    diagnose: { low: "Class IIa / IIb (Medium-High Risk)", medium: "Class IIb / III (High Risk)", high: "Class III (High Risk)"}
+                },
+                vi: {
+                    display: { low: "Không phải Thiết bị Y tế (có thể bị loại trừ là 'công nghệ hỗ trợ')", medium: "Loại I (Rủi ro thấp)", high: "Loại I (Rủi ro thấp)"},
+                    analyze: { low: "Loại I / IIa (Rủi ro thấp-trung bình)", medium: "Loại IIa / IIb (Rủi ro trung bình-cao)", high: "Loại IIb (Rủi ro trung bình-cao)"},
+                    diagnose: { low: "Loại IIa / IIb (Rủi ro trung bình-cao)", medium: "Loại IIb / III (Rủi ro cao)", high: "Loại III (Rủi ro cao)"}
+                }
             };
             
             const classificationDescription = {
-                "Not a Medical Device (likely excluded as 'enabling technology')": "If your platform only stores/displays data without interpretation, it may be considered 'enabling technology' and be excluded from TGA regulation. However, any claims of medical benefit could change this.",
-                "Class I (Low Risk)": "Your platform is likely a medical device but poses a low risk. It will require ARTG inclusion but has the simplest conformity assessment pathway.",
-                "Class I / IIa (Low-Medium Risk)": "Your platform is a medical device. Depending on how critical the monitoring is, it could be Class I or Class IIa. You will need a full technical file and QMS.",
-                "Class IIa / IIb (Medium-High Risk)": "Your platform is a regulated medical device with a medium to high-risk profile. It will require significant clinical evidence and a robust QMS (e.g., ISO 13485). The TGA will likely scrutinize your application.",
-                 "Class IIb (Medium-High Risk)": "Your platform is a medium-high risk medical device. Expect a thorough TGA review of your technical file, clinical evidence, and risk management.",
-                "Class IIb / III (High Risk)": "Your platform falls into a high-risk category. A full TGA conformity assessment is likely required, along with extensive clinical validation and a very robust QMS. This is the most stringent pathway.",
-                "Class III (High Risk)": "Your platform is in the highest risk class. This requires the most extensive level of evidence, including clinical trials, and will undergo the most rigorous TGA scrutiny. The approval process is long and complex."
+                en: {
+                    "Not a Medical Device (likely excluded as 'enabling technology')": "If your platform only stores/displays data without interpretation, it may be considered 'enabling technology' and be excluded from TGA regulation. However, any claims of medical benefit could change this.",
+                    "Class I (Low Risk)": "Your platform is likely a medical device but poses a low risk. It will require ARTG inclusion but has the simplest conformity assessment pathway.",
+                    "Class I / IIa (Low-Medium Risk)": "Your platform is a medical device. Depending on how critical the monitoring is, it could be Class I or Class IIa. You will need a full technical file and QMS.",
+                    "Class IIa / IIb (Medium-High Risk)": "Your platform is a regulated medical device with a medium to high-risk profile. It will require significant clinical evidence and a robust QMS (e.g., ISO 13485). The TGA will likely scrutinize your application.",
+                    "Class IIb (Medium-High Risk)": "Your platform is a medium-high risk medical device. Expect a thorough TGA review of your technical file, clinical evidence, and risk management.",
+                    "Class IIb / III (High Risk)": "Your platform falls into a high-risk category. A full TGA conformity assessment is likely required, along with extensive clinical validation and a very robust QMS. This is the most stringent pathway.",
+                    "Class III (High Risk)": "Your platform is in the highest risk class. This requires the most extensive level of evidence, including clinical trials, and will undergo the most rigorous TGA scrutiny. The approval process is long and complex."
+                },
+                vi: {
+                    "Không phải Thiết bị Y tế (có thể bị loại trừ là 'công nghệ hỗ trợ')": "Nếu nền tảng của bạn chỉ lưu trữ/hiển thị dữ liệu mà không diễn giải, nó có thể được coi là 'công nghệ hỗ trợ' và bị loại trừ khỏi quy định của TGA. Tuy nhiên, bất kỳ tuyên bố nào về lợi ích y tế đều có thể thay đổi điều này.",
+                    "Loại I (Rủi ro thấp)": "Nền tảng của bạn có thể là một thiết bị y tế nhưng có rủi ro thấp. Nó sẽ yêu cầu đưa vào ARTG nhưng có quy trình đánh giá sự phù hợp đơn giản nhất.",
+                    "Loại I / IIa (Rủi ro thấp-trung bình)": "Nền tảng của bạn là một thiết bị y tế. Tùy thuộc vào mức độ quan trọng của việc theo dõi, nó có thể là Loại I hoặc Loại IIa. Bạn sẽ cần một hồ sơ kỹ thuật đầy đủ và QMS.",
+                    "Loại IIa / IIb (Rủi ro trung bình-cao)": "Nền tảng của bạn là một thiết bị y tế được quản lý với hồ sơ rủi ro từ trung bình đến cao. Nó sẽ yêu cầu bằng chứng lâm sàng đáng kể và QMS mạnh mẽ (ví dụ: ISO 13485). TGA có thể sẽ xem xét kỹ lưỡng đơn đăng ký của bạn.",
+                    "Loại IIb (Rủi ro trung bình-cao)": "Nền tảng của bạn là một thiết bị y tế có rủi ro trung bình-cao. Hãy chuẩn bị cho một cuộc xem xét kỹ lưỡng của TGA về hồ sơ kỹ thuật, bằng chứng lâm sàng và quản lý rủi ro của bạn.",
+                    "Loại IIb / III (Rủi ro cao)": "Nền tảng của bạn thuộc loại rủi ro cao. Có thể yêu cầu đánh giá sự phù hợp hoàn chỉnh của TGA, cùng với xác thực lâm sàng mở rộng và QMS rất mạnh mẽ. Đây là con đường nghiêm ngặt nhất.",
+                    "Loại III (Rủi ro cao)": "Nền tảng của bạn thuộc loại rủi ro cao nhất. Điều này đòi hỏi mức độ bằng chứng rộng rãi nhất, bao gồm các thử nghiệm lâm sàng và sẽ trải qua quá trình xem xét nghiêm ngặt nhất của TGA. Quy trình phê duyệt dài và phức tạp."
+                }
             };
 
             const questionnaire = document.getElementById('saas-questionnaire');
@@ -487,12 +786,12 @@
                 const impact = document.querySelector('input[name="impact"]:checked');
 
                 if (dataFunction && impact) {
-                    const classification = classificationData[dataFunction.value][impact.value];
-                    resultClassEl.textContent = classification;
-                    resultDescEl.textContent = classificationDescription[classification];
+                    const classificationKey = classificationData[currentLanguage][dataFunction.value][impact.value];
+                    resultClassEl.textContent = classificationKey;
+                    resultDescEl.textContent = classificationDescription[currentLanguage][classificationKey];
                     resultContainer.classList.remove('opacity-20');
-                    regulatoryAnswer.classList.add('hidden'); // Hide previous answer
-                    regulatoryQuestionInput.value = ''; // Clear input
+                    regulatoryAnswer.classList.add('hidden');
+                    regulatoryQuestionInput.value = '';
                 }
             });
 
@@ -501,8 +800,8 @@
                 const currentClassification = resultClassEl.textContent;
                 const userQuestion = regulatoryQuestionInput.value.trim();
 
-                if (currentClassification === "Awaiting Input" || !userQuestion) {
-                    regulatoryAnswer.textContent = "Please determine a classification and enter a question.";
+                if (currentClassification === translations[currentLanguage].resultAwaitingInput || !userQuestion) {
+                    regulatoryAnswer.textContent = currentLanguage === 'en' ? "Please determine a classification and enter a question." : "Vui lòng xác định phân loại và nhập câu hỏi.";
                     regulatoryAnswer.classList.remove('hidden');
                     return;
                 }
@@ -511,7 +810,9 @@
                 regulatoryAnswerLoading.classList.remove('hidden');
 
                 let chatHistory = [];
-                const prompt = `The user's telehealth platform has been classified as "${currentClassification}". They are asking: "${userQuestion}". Provide a concise, helpful response regarding Australian TGA regulations for telehealth/SaMD. Focus on practical next steps or common challenges for this classification. Keep it under 200 words.`;
+                const languagePrompt = currentLanguage === 'en' ? "Respond in English." : "Trả lời bằng tiếng Việt.";
+                const prompt = `The user's telehealth platform has been classified as "${currentClassification}". They are asking: "${userQuestion}". Provide a concise, helpful response regarding Australian TGA regulations for telehealth/SaMD. Focus on practical next steps or common challenges for this classification. Keep it under 200 words. ${languagePrompt}`;
+                
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
@@ -529,11 +830,11 @@
                         const text = result.candidates[0].content.parts[0].text;
                         regulatoryAnswer.textContent = text;
                     } else {
-                        regulatoryAnswer.textContent = "Sorry, I couldn't generate a response. Please try again.";
+                        regulatoryAnswer.textContent = currentLanguage === 'en' ? "Sorry, I couldn't generate a response. Please try again." : "Xin lỗi, tôi không thể tạo phản hồi. Vui lòng thử lại.";
                     }
                 } catch (error) {
                     console.error("Error calling Gemini API:", error);
-                    regulatoryAnswer.textContent = "An error occurred while fetching a response. Please try again later.";
+                    regulatoryAnswer.textContent = currentLanguage === 'en' ? "An error occurred while fetching a response. Please try again later." : "Đã xảy ra lỗi khi lấy phản hồi. Vui lòng thử lại sau.";
                 } finally {
                     regulatoryAnswerLoading.classList.add('hidden');
                     regulatoryAnswer.classList.remove('hidden');
@@ -541,12 +842,22 @@
             });
 
             const processStepsData = {
-                1: "Accurately determine your device's risk class (I, IIa, IIb, or III) based on its intended purpose and the TGA's classification rules. This dictates your entire regulatory pathway.",
-                2: "As a foreign manufacturer, you MUST appoint a local Australian Sponsor. They are legally responsible for your device in Australia, managing TGA applications and post-market activities.",
-                3: "Compile a comprehensive technical file (similar to an EU MDR technical file) that demonstrates compliance with the TGA's Essential Principles for safety and performance.",
-                4: "Provide evidence of a compliant Quality Management System (QMS). An MDSAP or ISO 13485 certificate is typically required. This is a prerequisite for your application.",
-                5: "Your Australian Sponsor submits the formal application for ARTG inclusion via the TGA Business Services portal, referencing your manufacturer's evidence and technical file.",
-                6: "The TGA reviews your application. The depth and time of this review depends on the risk class and whether you used the abridged route. Upon approval, you receive an ARTG listing number."
+                en: {
+                    1: "Accurately determine your device's risk class (I, IIa, IIb, or III) based on its intended purpose and the TGA's classification rules. This dictates your entire regulatory pathway.",
+                    2: "As a foreign manufacturer, you MUST appoint a local Australian Sponsor. They are legally responsible for your device in Australia, managing TGA applications and post-market activities.",
+                    3: "Compile a comprehensive technical file (similar to an EU MDR technical file) that demonstrates compliance with the TGA's Essential Principles for safety and performance.",
+                    4: "Provide evidence of a compliant Quality Management System (QMS). An MDSAP or ISO 13485 certificate is typically required. This is a prerequisite for your application.",
+                    5: "Your Australian Sponsor submits the formal application for ARTG inclusion via the TGA Business Services portal, referencing your manufacturer's evidence and technical file.",
+                    6: "The TGA reviews your application. The depth and time of this review depends on the risk class and whether you used the abridged route. Upon approval, you receive an ARTG listing number."
+                },
+                vi: {
+                    1: "Xác định chính xác loại rủi ro của thiết bị (I, IIa, IIb hoặc III) dựa trên mục đích sử dụng dự kiến và các quy tắc phân loại của TGA. Điều này quyết định toàn bộ quy trình pháp lý của bạn.",
+                    2: "Với tư cách là nhà sản xuất nước ngoài, bạn PHẢI chỉ định một Nhà tài trợ Úc tại địa phương. Họ chịu trách nhiệm pháp lý đối với thiết bị của bạn tại Úc, quản lý các đơn đăng ký TGA và các hoạt động hậu thị trường.",
+                    3: "Biên soạn một hồ sơ kỹ thuật toàn diện (tương tự như hồ sơ kỹ thuật EU MDR) chứng minh sự tuân thủ Các nguyên tắc thiết yếu của TGA về an toàn và hiệu suất.",
+                    4: "Cung cấp bằng chứng về Hệ thống quản lý chất lượng (QMS) tuân thủ. Chứng nhận MDSAP hoặc ISO 13485 thường được yêu cầu. Đây là điều kiện tiên quyết cho đơn đăng ký của bạn.",
+                    5: "Nhà tài trợ Úc của bạn gửi đơn đăng ký chính thức để đưa vào ARTG thông qua cổng Dịch vụ kinh doanh TGA, tham chiếu bằng chứng của nhà sản xuất và hồ sơ kỹ thuật của bạn.",
+                    6: "TGA xem xét đơn đăng ký của bạn. Mức độ chuyên sâu và thời gian xem xét phụ thuộc vào loại rủi ro và liệu bạn có sử dụng lộ trình rút gọn hay không. Sau khi được phê duyệt, bạn sẽ nhận được số niêm yết ARTG."
+                }
             };
 
             const processStepsContainer = document.getElementById('process-steps');
@@ -558,7 +869,7 @@
                     document.querySelectorAll('.process-step').forEach(el => el.classList.remove('active'));
                     stepElement.classList.add('active');
                     const step = stepElement.dataset.step;
-                    processDetailsContainer.innerHTML = `<p class="text-gray-700">${processStepsData[step]}</p>`;
+                    processDetailsContainer.innerHTML = `<p class="text-gray-700">${processStepsData[currentLanguage][step]}</p>`;
                 }
             });
 
@@ -701,7 +1012,7 @@
             // LLM Integration 2: Evidence Generation Ideas
             document.querySelectorAll('.generate-ideas-btn').forEach(button => {
                 button.addEventListener('click', async (event) => {
-                    const pillar = event.target.dataset.pillar;
+                    const pillar = event.target.dataset.pillar; // This is in English, so we don't translate this
                     const responseBox = event.target.nextElementSibling;
                     const loadingSpinner = responseBox.nextElementSibling;
 
@@ -709,7 +1020,9 @@
                     loadingSpinner.classList.remove('hidden');
 
                     let chatHistory = [];
-                    const prompt = `I need ideas for how to demonstrate "${pillar}" for a telehealth platform that uses data from third-party consumer devices like Garmin, Samsung Watch, and Apple Watch. Provide specific examples of evidence, study types, or documentation. Keep it concise, focused on practical steps. Output as a short bulleted list.`;
+                    const languagePrompt = currentLanguage === 'en' ? "Respond in English." : "Trả lời bằng tiếng Việt. Nội dung phải có dấu và không bị lỗi chính tả";
+                    const prompt = `I need ideas for how to demonstrate "${pillar}" for a telehealth platform that uses data from third-party consumer devices like Garmin, Samsung Watch, and Apple Watch. Provide specific examples of evidence, study types, or documentation. Keep it concise, focused on practical steps. Output as a short bulleted list. ${languagePrompt}`;
+                    
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
@@ -727,11 +1040,11 @@
                             const text = result.candidates[0].content.parts[0].text;
                             responseBox.innerHTML = formatMarkdownToHtml(text); // Use helper for markdown
                         } else {
-                            responseBox.textContent = "Sorry, I couldn't generate ideas. Please try again.";
+                            responseBox.textContent = currentLanguage === 'en' ? "Sorry, I couldn't generate ideas. Please try again." : "Xin lỗi, tôi không thể tạo ý tưởng. Vui lòng thử lại.";
                         }
                     } catch (error) {
                         console.error("Error calling Gemini API:", error);
-                        responseBox.textContent = "An error occurred while fetching ideas. Please try again later.";
+                        responseBox.textContent = currentLanguage === 'en' ? "An error occurred while fetching ideas. Please try again later." : "Đã xảy ra lỗi khi lấy ý tưởng. Vui lòng thử lại sau.";
                     } finally {
                         loadingSpinner.classList.add('hidden');
                         responseBox.classList.remove('hidden');
@@ -742,7 +1055,10 @@
             // LLM Integration 3: Tailored Recommendation Expansion
             document.querySelectorAll('.expand-recommendation-btn').forEach(button => {
                 button.addEventListener('click', async (event) => {
-                    const recommendationText = event.target.previousElementSibling.textContent.trim();
+                    // Get the English recommendation text from the data-i18n-key for consistent prompting
+                    const labelElement = event.target.previousElementSibling;
+                    const englishRecommendationText = translations.en[labelElement.getAttribute('data-i18n-key')];
+
                     const responseBox = event.target.closest('.flex-col').querySelector('.llm-response-box');
                     const loadingSpinner = event.target.closest('.flex-col').querySelector('.loading-spinner');
 
@@ -755,7 +1071,9 @@
                     loadingSpinner.classList.remove('hidden');
 
                     let chatHistory = [];
-                    const prompt = `Elaborate on the following recommendation for a telehealth platform entering the Australian market, especially one using data from third-party consumer devices: '${recommendationText}'. Provide specific actions, potential challenges, and key considerations. Keep it concise, around 3-4 sentences.`;
+                    const languagePrompt = currentLanguage === 'en' ? "Respond in English." : "Trả lời bằng tiếng Việt. Nội dung phải có dấu và không bị lỗi chính tả";
+                    const prompt = `Elaborate on the following recommendation for a telehealth platform entering the Australian market, especially one using data from third-party consumer devices: '${englishRecommendationText}'. Provide specific actions, potential challenges, and key considerations. Keep it concise, around 3-4 sentences. ${languagePrompt}`;
+                    
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
@@ -773,15 +1091,15 @@
                             const text = result.candidates[0].content.parts[0].text;
                             responseBox.textContent = text;
                         } else {
-                            responseBox.textContent = "Sorry, I couldn't elaborate. Please try again.";
+                            responseBox.textContent = currentLanguage === 'en' ? "Sorry, I couldn't elaborate. Please try again." : "Xin lỗi, tôi không thể giải thích thêm. Vui lòng thử lại.";
                         }
                     } catch (error) {
                         console.error("Error calling Gemini API:", error);
-                        responseBox.textContent = "An error occurred while fetching the elaboration. Please try again later.";
+                        responseBox.textContent = currentLanguage === 'en' ? "An error occurred while fetching the elaboration. Please try again later." : "Đã xảy ra lỗi khi lấy giải thích. Vui lòng thử lại sau.";
                     } finally {
                         loadingSpinner.classList.add('hidden');
                         responseBox.classList.remove('hidden');
-                        responseBox.style.display = 'block'; // Ensure it becomes visible
+                        responseBox.style.display = 'block';
                     }
                 });
             });
